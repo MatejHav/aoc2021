@@ -1,35 +1,24 @@
 import numpy as np
 
-data = np.array(open('6b.txt').read().split('\n'))
+data = np.array(open('6a.txt').read().split('\n'))
 
 days = 256
 original = np.array(data[0].split(',')).astype(np.int8)
 
-for i in range(days // 2):
-    original = original - 1
-    w = original == -1
-    count = len(original[w])
-    original[w] = 6
-    original = np.append(original, [8 for j in range(count)]).astype(np.int8)
-    print(f'Day {i if i >= 10 else "0" + str(i)}')
+count = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0}
+for fish in original:
+    count[fish] += 1
 
-o1 = original[:np.int64(len(original)//2)]
-o2 = original[np.int64(len(original)//2):]
+for i in range(days):
+    temp = count[0]
+    count[0] = count[1]
+    count[1] = count[2]
+    count[2] = count[3]
+    count[3] = count[4]
+    count[4] = count[5]
+    count[5] = count[6]
+    count[6] = count[7] + temp
+    count[7] = count[8]
+    count[8] = temp
 
-for i in range(days // 2, days):
-    o1 = o1 - 1
-    w = o1 == -1
-    count = len(o1[w])
-    o1[w] = 6
-    o1 = np.append(o1, [8 for j in range(count)]).astype(np.int8)
-    print(f'Day {i if i >= 10 else "0" + str(i)}')
-
-for i in range(days // 2, days):
-    o2 = o2 - 1
-    w = o2 == -1
-    count = len(o2[w])
-    o2[w] = 6
-    o2 = np.append(o2, [8 for j in range(count)]).astype(np.int8)
-    print(f'Day {i if i >= 10 else "0" + str(i)}')
-
-print(len(o1) + len(o2))
+print(sum([count[k] for k in count]))
