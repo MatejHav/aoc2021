@@ -5,7 +5,7 @@ data = np.array(open('6a.txt').read().split('\n'))
 days = 256
 original = np.array(data[0].split(',')).astype(np.int8)
 
-count = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0}
+count = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0}
 for fish in original:
     count[fish] += 1
 
