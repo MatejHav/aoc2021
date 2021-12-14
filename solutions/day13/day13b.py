@@ -1,6 +1,6 @@
 import numpy as np
 
-data = np.array(open('13a.txt').read().split('\n'))
+data = np.array(open('13c.txt').read().split('\n'))
 
 dots = []
 folds = []
@@ -29,8 +29,8 @@ max_x = np.max([t[0] for t in dots]) + 1
 max_y = np.max([t[1] for t in dots]) + 1
 res = ''
 check = [f'{dot[0]},{dot[1]}' for dot in dots]
-for y in range(- 2, 2*max_y):
-    for x in range(-2, 2*max_x):
+for y in range(- 2, max_y + 2):
+    for x in range(-2, max_x + 2):
         if f'{x},{y}' in check:
             res += '#'
         else:
