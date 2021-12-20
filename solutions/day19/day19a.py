@@ -10,6 +10,7 @@ for line in data:
             scanners.append(t)
         t = []
         continue
+
     t.append(np.array(line.split(',')).astype(np.int64))
 
 ref = scanners[0]
